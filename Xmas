@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivaldi's Four Seasons Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
+        .puzzle-piece {
+            position: absolute;
+            cursor: grab;
+        }
+        .grid {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vivaldi's Four Seasons Puzzle</h1>
+        <div id="step-1" class="step active">
+            <h2>Step 1: Solve the Code</h2>
+            <p>Unscramble these words to reveal the four seasons:</p>
+            <p><strong>brestH, rilFungh, tniWer, oemSrm</strong></p>
+            <input type="text" id="step1-input" placeholder="Enter seasons">
+            <button onclick="checkStep1()">Submit</button>
+            <p id="step1-message" style="color: red;"></p>
+        </div>
+
+        <div id="step-2" class="step">
+            <h2>Step 2: Find the City</h2>
+            <img src="YOUR_VIENNA_IMAGE_URL" alt="Vienna landmarks" width="400">
+            <p>Where did the maestro's music echo across time?</p>
+            <button onclick="checkStep2()">Vienna</button>
+        </div>
+
+        <div id="step-3" class="step">
+            <h2>Step 3: Listen and Order</h2>
+            <audio controls>
+                <source src="YOUR_AUDIO_URL" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p>Enter the correct order of the seasons:</p>
+            <input type="text" id="step3-input" placeholder="e.g., Spring, Summer">
+            <button onclick="checkStep3()">Submit</button>
+            <p id="step3-message" style="color: red;"></p>
+        </div>
+
+        <div id="step-4" class="step">
+            <h2>Step 4: Solve the Puzzle</h2>
+            <p>Rearrange the pieces to complete the image:</p>
+            <div class="grid" id="puzzle-grid">
+                <!-- Puzzle pieces will be dynamically added here -->
+            </div>
+            <button onclick="checkStep4()">Check Solution</button>
+            <p id="step4-message" style="color: red;"></p>
+        </div>
+
+        <div id="final-step" class="step">
+            <h2>Congratulations!</h2>
+            <p>You solved the puzzle! It's time to experience the Four Seasons live in Vienna!</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function goToNextStep() {
+            document.querySelector(`#step-${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.querySelector(`#step-${currentStep}`).classList.add('active');
+        }
+
+        function checkStep1() {
+            const input = document.getElementById('step1-input').value.toLowerCase();
+            const correct = ["spring", "summer", "autumn", "winter"];
+            const userAnswer = input.split(/,\s*/);
+
+            if (correct.every(season => userAnswer.includes(season))) {
+                goToNextStep();
+            } else {
+                document.getElementById('step1-message').textContent = 'Try again. Hint: Think of the four seasons.';
+            }
+        }
+
+        function checkStep2() {
+            goToNextStep();
+        }
+
+        function checkStep3() {
+            const input = document.getElementById('step3-input').value.toLowerCase();
+            if (input === 'spring, summer, autumn, winter') {
+                goToNextStep();
+            } else {
+                document.getElementById('step3-message').textContent = 'That order is incorrect. Try again!';
+            }
+        }
+
+        function checkStep4() {
+            // Simple placeholder logic; actual puzzle verification would depend on positioning.
+            alert('Puzzle logic to be implemented!');
+        }
+    </script>
+</body>
+</html>
