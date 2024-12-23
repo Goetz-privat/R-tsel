@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lises Weihnachts-Spezial-Puzzle</title>
+    <title>Vivaldi's Four Seasons Puzzle</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,13 +36,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lises Weihnachts-Spezial-Puzzle</h1>
+        <h1>Vivaldi's Four Seasons Puzzle</h1>
         <div id="step-1" class="step active">
             <h2>Step 1: Solve the Code</h2>
             <p>Unscramble these words to reveal the four seasons:</p>
-            <p><strong>brestH, rilFungh, tniWer, oemSrm</strong></p>
-            <input type="text" id="step1-input" placeholder="Enter seasons">
-            <button onclick="checkStep1()">Submit</button>
+            <p><strong>Herbst, Frühling, Winter, Sommer</strong></p>
+            <input type="text" id="step1-input" placeholder="Gib die Jahreszeiten ein">
+            <button onclick="checkStep1()">Eingeben</button>
             <p id="step1-message" style="color: red;"></p>
         </div>
 
@@ -59,9 +59,9 @@
                 <source src="YOUR_AUDIO_URL" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <p>Enter the correct order of the seasons:</p>
-            <input type="text" id="step3-input" placeholder="e.g., Spring, Summer">
-            <button onclick="checkStep3()">Submit</button>
+            <p>Gib die richtige Reihenfolge der Jahreszeiten ein:</p>
+            <input type="text" id="step3-input" placeholder="z.B.: Frühling, Sommer">
+            <button onclick="checkStep3()">Eingeben</button>
             <p id="step3-message" style="color: red;"></p>
         </div>
 
@@ -92,13 +92,13 @@
 
         function checkStep1() {
             const input = document.getElementById('step1-input').value.toLowerCase();
-            const correct = ["spring", "summer", "autumn", "winter"];
+            const correct = ["frühling", "sommer", "herbst", "winter"];
             const userAnswer = input.split(/[ ,\s]+/).map(word => word.trim());
 
             if (correct.every(season => userAnswer.includes(season))) {
                 goToNextStep();
             } else {
-                document.getElementById('step1-message').textContent = 'Try again. Hint: Think of the four seasons.';
+                document.getElementById('step1-message').textContent = 'Versuche es noch einmal. Tipp: Denke an die vier Jahreszeiten.';
             }
         }
 
@@ -108,10 +108,10 @@
 
         function checkStep3() {
             const input = document.getElementById('step3-input').value.toLowerCase();
-            if (input === 'spring, summer, autumn, winter') {
+            if (input === 'frühling, sommer, herbst, winter') {
                 goToNextStep();
             } else {
-                document.getElementById('step3-message').textContent = 'That order is incorrect. Try again!';
+                document.getElementById('step3-message').textContent = 'Diese Reihenfolge ist falsch. Versuche es noch einmal!';
             }
         }
 
