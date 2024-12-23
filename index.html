@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lises Spezial Weihnachtsraetsel</title>
+    <title>Lises Weihnachts-Spezial-Puzzle</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,9 +36,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lises Spezial Weihnachtsraetsel</h1>
+        <h1>Lises Weihnachts-Spezial-Puzzle</h1>
         <div id="step-1" class="step active">
             <h2>Step 1: Solve the Code</h2>
+            <p>Unscramble these words to reveal the four seasons:</p>
             <p><strong>brestH, rilFungh, tniWer, oemSrm</strong></p>
             <input type="text" id="step1-input" placeholder="Enter seasons">
             <button onclick="checkStep1()">Submit</button>
@@ -92,7 +93,7 @@
         function checkStep1() {
             const input = document.getElementById('step1-input').value.toLowerCase();
             const correct = ["spring", "summer", "autumn", "winter"];
-            const userAnswer = input.split(/,\s*/);
+            const userAnswer = input.split(/[ ,\s]+/).map(word => word.trim());
 
             if (correct.every(season => userAnswer.includes(season))) {
                 goToNextStep();
