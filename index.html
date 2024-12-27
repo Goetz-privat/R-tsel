@@ -105,7 +105,15 @@
         }
 
         function checkStep2() {
+            const input = document.getElementById('step2-input').value.toLowerCase();
+            const correct = ["wien"];
+            const userAnswer = input.split(/[ ,\s]+/).map(word => word.trim());
+
+            if (correct.every(season => userAnswer.includes(season))) {
             goToNextStep();
+            } else {
+                document.getElementById('step2-message').textContent = 'Versuche es noch einmal. Tipp: Mozart.';
+            }
         }
 
         function checkStep3() {
