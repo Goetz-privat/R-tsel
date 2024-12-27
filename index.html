@@ -13,7 +13,7 @@
         }
         .container {
             margin: 20px auto;
-            max-width: 1024px;
+            max-width: 800px;
         }
         .step {
             display: none;
@@ -29,10 +29,10 @@
         }
         .grid {
             position: relative;
-            width: 1024px;
-            height: 1024px;
+            width: 400px;
+            height: 400px;
             margin: 20px auto;
-            border: 1px solid black;
+            border: 2px solid black;
             display: flex;
             flex-wrap: wrap;
         }
@@ -76,11 +76,9 @@
 
         <div id="step-4" class="step">
             <h2>Step 4: Solve the Puzzle</h2>
-            <p>Rearrange the pieces to complete the image:</p>
-            <div class="grid" id="puzzle-grid">
-                <!-- Puzzle pieces will be dynamically added here -->
-            </div>
-            <button onclick="checkStep4()">Check Solution</button>
+            <p>The image will slowly fade in:</p>
+            <div id="fade-in-image" style="display:none; width:400px; height:400px; margin:20px auto; background-image:url('https://raw.githubusercontent.com/Goetz-privat/R-tsel/refs/heads/main/images/Collage_Final_With_Cut_Marks.jpg'); background-size:contain; background-repeat:no-repeat;"></div>
+            <button onclick="fadeInImage()">Start</button>
             <p id="step4-message" style="color: red;"></p>
         </div>
 
@@ -135,66 +133,20 @@
             }
         }
 
-        function checkStep4() {
-            const pieces = document.querySelectorAll('.puzzle-piece');
-            let correct = true;
+        function fadeInImage() {
+            const image = document.getElementById('fade-in-image');
+            let opacity = 0;
+            image.style.display = 'block';
 
-            pieces.forEach((piece, index) => {
-                if (parseInt(piece.getAttribute('data-index')) !== index) {
-                    correct = false;
+            const fadeInInterval = setInterval(() => {
+                if (opacity < 1) {
+                    opacity += 0.01;
+                    image.style.opacity = opacity;
+                } else {
+                    clearInterval(fadeInInterval);
                 }
-            });
-
-            if (correct) {
-                alert('Puzzle completed successfully!');
-            } else {
-                alert('The puzzle is not correct. Try again!');
-            }
+            }, 30);
         }
-
-        window.onload = function() {
-            const grid = document.getElementById('puzzle-grid');
-            const rows = 4;
-            const cols = 4;
-            const imageSize = 1024; // Size of the image in pixels
-
-            // Create puzzle pieces
-            for (let i = 0; i < rows * cols; i++) {
-                const piece = document.createElement('div');
-                piece.className = 'puzzle-piece';
-                piece.draggable = true;
-                piece.style.width = `${100 / cols}%`;
-                piece.style.height = `${100 / rows}%`;
-                piece.style.backgroundImage = 'url("./images/Collage_Final_With_Cut_Marks.jpg")';
-                piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-                piece.style.backgroundPosition = `${(i % cols) * (100 / (cols - 1))}% ${(Math.floor(i / cols)) * (100 / (rows - 1))}%`;
-                piece.setAttribute('data-index', i);
-                grid.appendChild(piece);
-
-                piece.ondragstart = function(event) {
-                    event.dataTransfer.setData('text/plain', event.target.getAttribute('data-index'));
-                };
-            }
-
-            grid.ondragover = function(event) {
-                event.preventDefault();
-            };
-
-            grid.ondrop = function(event) {
-                event.preventDefault();
-                const draggedIndex = event.dataTransfer.getData('text/plain');
-                const targetIndex = event.target.getAttribute('data-index');
-
-                if (draggedIndex !== null && targetIndex !== null) {
-                    const draggedPiece = grid.querySelector(`[data-index="${draggedIndex}"]`);
-                    const targetPiece = grid.querySelector(`[data-index="${targetIndex}"]`);
-
-                    const draggedBackgroundPos = draggedPiece.style.backgroundPosition;
-                    draggedPiece.style.backgroundPosition = targetPiece.style.backgroundPosition;
-                    targetPiece.style.backgroundPosition = draggedBackgroundPos;
-                }
-            };
-        };
     </script>
 </body>
 </html>
