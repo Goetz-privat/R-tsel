@@ -44,7 +44,7 @@
         <div id="step-1" class="step active">
             <h2>Step 1: Solve the Code</h2>
             <p>Unscramble these words:</p>
-            <p><strong>tsbrHe, Fglirühn, retniW, moSrem</strong></p>
+            <p><strong>tsbrHe, Fglirüh, retniW, moSrem</strong></p>
             <input type="text" id="step1-input" placeholder="Gib die Wörter korrekt ein">
             <button onclick="checkStep1()">Eingeben</button>
             <p id="step1-message" style="color: red;"></p>
@@ -156,17 +156,18 @@
             const grid = document.getElementById('puzzle-grid');
             const rows = 4;
             const cols = 4;
+            const imageSize = 1024; // Size of the image in pixels
 
             // Create puzzle pieces
             for (let i = 0; i < rows * cols; i++) {
                 const piece = document.createElement('div');
                 piece.className = 'puzzle-piece';
                 piece.draggable = true;
-                piece.style.width = `${25 / cols}%`;
-                piece.style.height = `${25 / rows}%`;
-                piece.style.backgroundImage = 'url("./images/Collage_Final_With_Cut_Marks.jpg")';
-                piece.style.backgroundSize = `${cols * 25}% ${rows * 25}%`;
-                piece.style.backgroundPosition = `${(i % cols) * (25 / (cols - 1))}% ${(Math.floor(i / cols)) * (25 / (rows - 1))}%`;
+                piece.style.width = `${100 / cols}%`;
+                piece.style.height = `${100 / rows}%`;
+                piece.style.backgroundImage = 'url("https://raw.githubusercontent.com/Goetz-privat/R-tsel/refs/heads/main/images/Collage_Final_With_Cut_Marks.jpg")';
+                piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+                piece.style.backgroundPosition = `${(i % cols) * (100 / (cols - 1))}% ${(Math.floor(i / cols)) * (100 / (rows - 1))}%`;
                 piece.setAttribute('data-index', i);
                 grid.appendChild(piece);
 
