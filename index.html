@@ -118,8 +118,11 @@
 
         function checkStep3() {
             const input = document.getElementById('step3-input').value.toLowerCase();
-            if (input === 'Vivaldi') {
-                goToNextStep();
+            const correct = ["vivaldi"];
+            const userAnswer = input.split(/[ ,\s]+/).map(word => word.trim());
+
+            if (correct.every(season => userAnswer.includes(season))) {
+            goToNextStep();
             } else {
                 document.getElementById('step3-message').textContent = 'Dieser Name ist falsch. Versuche es noch einmal!';
             }
