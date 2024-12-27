@@ -132,9 +132,66 @@
         }
 
         function checkStep4() {
-            // Simple placeholder logic; actual puzzle verification would depend on positioning.
-            alert('Puzzle logic to be implemented!');
-        }
-    </script>
+            <script>
+                window.onload = function() {
+                    const grid = document.getElementById('puzzle-grid');
+                    const rows = 4;
+                    const cols = 4;
+
+                    // Create puzzle pieces
+                    for (let i = 0; i < rows * cols; i++) {
+                        const piece = document.createElement('div');
+                        piece.className = 'puzzle-piece';
+                        piece.draggable = true;
+                        piece.style.width = `${100 / cols}%`;
+                        piece.style.height = `${100 / rows}%`;
+                        piece.style.backgroundImage = 'url("./images/puzzle-image.jpg")';
+                        piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+                        piece.style.backgroundPosition = `${(i % cols) * (100 / (cols - 1))}% ${(Math.floor(i / cols)) * (100 / (rows - 1))}%`;
+                        piece.setAttribute('data-index', i);
+                        grid.appendChild(piece);
+
+                        piece.ondragstart = function(event) {
+                            event.dataTransfer.setData('text/plain', event.target.getAttribute('data-index'));
+                        };
+                    }
+            
+                    grid.ondragover = function(event) {
+                        event.preventDefault();
+                    };
+
+                    grid.ondrop = function(event) {
+                        event.preventDefault();
+                        const draggedIndex = event.dataTransfer.getData('text/plain');
+                        const targetIndex = event.target.getAttribute('data-index');
+
+                        if (draggedIndex !== null && targetIndex !== null) {
+                            const draggedPiece = grid.querySelector(`[data-index="${draggedIndex}"]`);
+                            const targetPiece = grid.querySelector(`[data-index="${targetIndex}"]`);
+            
+                            const draggedBackgroundPos = draggedPiece.style.backgroundPosition;
+                            draggedPiece.style.backgroundPosition = targetPiece.style.backgroundPosition;
+                            targetPiece.style.backgroundPosition = draggedBackgroundPos;
+                        }
+                    };
+                };
+
+                function checkStep4() {
+                    const pieces = document.querySelectorAll('.puzzle-piece');
+                    let correct = true;
+            
+                    pieces.forEach((piece, index) => {
+                        if (parseInt(piece.getAttribute('data-index')) !== index) {
+                            correct = false;
+                        }
+                    });
+            
+                    if (correct) {
+                        alert('Puzzle completed successfully!');
+                    } else {
+                        alert('The puzzle is not correct. Try again!');
+                    }
+                }
+            </script>
 </body>
 </html>
