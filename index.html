@@ -24,6 +24,8 @@
         .puzzle-piece {
             position: absolute;
             cursor: grab;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
         }
         .grid {
             position: relative;
@@ -31,6 +33,8 @@
             height: 400px;
             margin: 20px auto;
             border: 2px solid black;
+            display: flex;
+            flex-wrap: wrap;
         }
     </style>
 </head>
