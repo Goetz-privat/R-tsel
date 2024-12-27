@@ -61,8 +61,8 @@
                 <source src="images/1. Spring 1(allegro).mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <p>Gib die richtige Reihenfolge der Jahreszeiten ein:</p>
-            <input type="text" id="step3-input" placeholder="z.B.: Frühling, Sommer">
+            <p>Gib den richtigen Nachnamen des Komponisten ein:</p>
+            <input type="text" id="step3-input" placeholder="z.B.: Strauss, Bethoven">
             <button onclick="checkStep3()">Eingeben</button>
             <p id="step3-message" style="color: red;"></p>
         </div>
@@ -118,10 +118,10 @@
 
         function checkStep3() {
             const input = document.getElementById('step3-input').value.toLowerCase();
-            if (input === 'frühling, sommer, herbst, winter') {
+            if (input === 'Vivaldi') {
                 goToNextStep();
             } else {
-                document.getElementById('step3-message').textContent = 'Diese Reihenfolge ist falsch. Versuche es noch einmal!';
+                document.getElementById('step3-message').textContent = 'Dieser Name ist falsch. Versuche es noch einmal!';
             }
         }
 
