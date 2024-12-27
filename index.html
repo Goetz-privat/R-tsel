@@ -162,11 +162,11 @@
                 const piece = document.createElement('div');
                 piece.className = 'puzzle-piece';
                 piece.draggable = true;
-                piece.style.width = `${100 / cols}%`;
-                piece.style.height = `${100 / rows}%`;
+                piece.style.width = `${25 / cols}%`;
+                piece.style.height = `${25 / rows}%`;
                 piece.style.backgroundImage = 'url("./images/Collage_Final_With_Cut_Marks.jpg")';
-                piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-                piece.style.backgroundPosition = `${(i % cols) * (100 / (cols - 1))}% ${(Math.floor(i / cols)) * (100 / (rows - 1))}%`;
+                piece.style.backgroundSize = `${cols * 25}% ${rows * 25}%`;
+                piece.style.backgroundPosition = `${(i % cols) * (25 / (cols - 1))}% ${(Math.floor(i / cols)) * (25 / (rows - 1))}%`;
                 piece.setAttribute('data-index', i);
                 grid.appendChild(piece);
 
